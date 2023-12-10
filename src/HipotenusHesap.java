@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class HipotenüsHesap {
+public class HipotenusHesap {
 
     public static void main(String[] args) {
 
