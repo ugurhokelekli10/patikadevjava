@@ -1,18 +1,14 @@
 import java.util.Scanner;
 public class Burclar {
     public static void main(String[] args) {
-        boolean restart = false;
+        boolean restart;
 
         do {
             calculateHoroscope();
             Scanner i = new Scanner(System.in);
             System.out.print("Do you want to restart the program? (y/n) : ");
             String answer = i.nextLine();
-            if (answer.equals("y")) {
-                restart = true;
-            } else {
-                restart = false;
-            }
+            restart = answer.equals("y");
         } while (restart);
     }
 
