@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Burclar {
     public static void main(String[] args) {
         boolean restart;
@@ -8,160 +9,52 @@ public class Burclar {
             Scanner i = new Scanner(System.in);
             System.out.print("Do you want to restart the program? (y/n) : ");
             String answer = i.nextLine();
-            restart = answer.equals("y");
+            restart = answer.equalsIgnoreCase("y");
         } while (restart);
     }
 
     public static void calculateHoroscope() {
+        int[][] dateRanges = {
+                {1, 1, 1, 19},    // Capricorn
+                {1, 20, 2, 18},   // Aquarius
+                {2, 19, 3, 20},   // Pisces
+                {3, 21, 4, 19},   // Aries
+                {4, 20, 5, 20},   // Taurus
+                {5, 21, 6, 20},   // Gemini
+                {6, 21, 7, 22},   // Cancer
+                {7, 23, 8, 22},   // Leo
+                {8, 23, 9, 22},   // Virgo
+                {9, 23, 10, 22},  // Libra
+                {10, 23, 11, 21}, // Scorpio
+                {11, 22, 12, 21}, // Sagittarius
+                {12, 22, 12, 31}  // Capricorn
+        };
+
+        String[] horoscopes = {
+                "Capricorn", "Aquarius", "Pisces", "Aries",
+                "Taurus", "Gemini", "Cancer", "Leo",
+                "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn"
+        };
+
         int month, day;
-        String horoscope = "";
-        boolean isError = false;
-        Scanner i = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your birth month : ");
-        month = i.nextInt();
+        month = scanner.nextInt();
         System.out.print("Enter your birth day : ");
-        day = i.nextInt();
-        switch (month) {
-            case 1:
-                if (day >= 1 && day <= 31) {
-                    if (day < 22) {
-                        horoscope = "Capricorn";
-                    } else {
-                        horoscope = "Aquarius";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 2:
-                if (day >= 1 && day <= 28) {
-                    if (day < 20) {
-                        horoscope = "Aquarius";
-                    } else {
-                        horoscope = "Pisces";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 3:
-                if (day >= 1 && day <= 31) {
-                    if (day < 21) {
-                        horoscope = "Pisces";
-                    } else {
-                        horoscope = "Aries";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 4:
-                if (day >= 1 && day <= 30) {
-                    if (day < 21) {
-                        horoscope = "Aries";
-                    } else {
-                        horoscope = "Taurus";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 5:
-                if (day >= 1 && day <= 31) {
-                    if (day < 22) {
-                        horoscope = "Taurus";
-                    } else {
-                        horoscope = "Gemini";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 6:
-                if (day >= 1 && day <= 30) {
-                    if (day < 23) {
-                        horoscope = "Gemini";
-                    } else {
-                        horoscope = "Cancer";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 7:
-                if (day >= 1 && day <= 31) {
-                    if (day < 23) {
-                        horoscope = "Cancer";
-                    } else {
-                        horoscope = "Leo";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 8:
-                if (day >= 1 && day <= 31) {
-                    if (day < 23) {
-                        horoscope = "Leo";
-                    } else {
-                        horoscope = "Virgo";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 9:
-                if (day >= 1 && day <= 30) {
-                    if (day < 23) {
-                        horoscope = "Virgo";
-                    } else {
-                        horoscope = "Libra";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 10:
-                if (day >= 1 && day <= 31) {
-                    if (day < 23) {
-                        horoscope = "Libra";
-                    } else {
-                        horoscope = "Scorpio";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 11:
-                if (day >= 1 && day <= 30) {
-                    if (day < 22) {
-                        horoscope = "Scorpio";
-                    } else {
-                        horoscope = "Sagittarius";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            case 12:
-                if (day >= 1 && day <= 31) {
-                    if (day < 22) {
-                        horoscope = "Sagittarius";
-                    } else {
-                        horoscope = "Capricorn";
-                    }
-                } else {
-                    isError = true;
-                }
-                break;
-            default:
-                isError = true;
-                break;
+        day = scanner.nextInt();
+
+        boolean found = false;
+        int i = 0;
+        while (i < dateRanges.length && !found) {
+            if ((month == dateRanges[i][0] && day >= dateRanges[i][1]) || (month == dateRanges[i][2] && day <= dateRanges[i][3])) {
+                found = true;
+                System.out.println("Your horoscope : " + horoscopes[i]);
+            }
+            i++;
         }
-        if (isError) {
+
+        if (!found) {
             System.out.println("Invalid date!");
-        } else {
-            System.out.println("Your horoscope : " + horoscope);
         }
     }
 }
