@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Siralama {
     public static void main(String[] args) {
@@ -18,8 +17,7 @@ public class Siralama {
         numbers.add(b);
         numbers.add(c);
 
-        numbers.sort(Comparator.reverseOrder());
-
+        numbers.sort(null);
         System.out.println(numbers);
     }
 }
