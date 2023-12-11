@@ -25,8 +25,7 @@ public class SinifGecme {
 
         for (String[] ders : dersler) {
             if (Double.parseDouble(ders[1]) < 0 || Double.parseDouble(ders[1]) > 100) {
-                System.out.println(ders[0] + " notu 0-100 arasında olmalıdır.");
-                System.exit(1);
+                System.out.println(ders[0] + " notu 0-100 arasında değil, bu ders hesaplamaya katılmayacak.");
             } else {
                 toplam += Double.parseDouble(ders[1]);
                 dersSayisi++;
