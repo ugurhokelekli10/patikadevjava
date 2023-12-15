@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class JavaPatika {
+public class GelismisHesapMakinesi {
 
     static void plus() {
         Scanner scan = new Scanner(System.in);
